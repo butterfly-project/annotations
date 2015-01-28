@@ -1,0 +1,22 @@
+{
+    "name": "butterfly/annotations",
+    "type": "library",
+    "description": "Butterfly PHP. Annotations Component",
+    "keywords": ["Annotations"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marat Fakhertdinov",
+            "email": "marat.fakhertdinov@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Butterfly\\Component\\Annotations\\": "src/",
+            "Butterfly\\Component\\Annotations\\Tests\\": "tests/"
+        }
+    }
+}
