@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+1.0.2
+-----
+
+Added functionality:
+
+ * Added test for FileLoader
+
 1.0.1
 -----
 
