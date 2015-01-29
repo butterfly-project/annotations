@@ -3,7 +3,7 @@
 namespace Butterfly\Component\Annotations\Tests;
 
 use Butterfly\Component\Annotations\ClassParser;
-use Butterfly\Component\Annotations\FileLoader\PhpFileLoader;
+use Butterfly\Component\Annotations\FileLoader\FileLoader;
 use Butterfly\Component\Annotations\Parser\PhpDocParser;
 
 class ClassParserTest extends \PHPUnit_Framework_TestCase
@@ -29,13 +29,11 @@ class ClassParserTest extends \PHPUnit_Framework_TestCase
         ),
     );
 
-    public function testParseDirectories()
+    public function testParseClassesInDir()
     {
         $parser = $this->getClassParser();
 
-        $result = $parser->parseDirectories(array(
-            __DIR__ . '/Stub'
-        ));
+        $result = $parser->parseClassesInDir(__DIR__ . '/Stub');
 
         $expected = array(
             'Butterfly\Component\Annotations\Tests\Stub\Calculator' => $this->expectedClassAnnotations
@@ -50,7 +48,7 @@ class ClassParserTest extends \PHPUnit_Framework_TestCase
 
         require_once __DIR__ . '/Stub/Calculator.php';
 
-        $annotations = $parser->parse('Butterfly\Component\Annotations\Tests\Stub\Calculator');
+        $annotations = $parser->parseClass('Butterfly\Component\Annotations\Tests\Stub\Calculator');
 
         $this->assertEquals($this->expectedClassAnnotations, $annotations);
     }
@@ -61,7 +59,7 @@ class ClassParserTest extends \PHPUnit_Framework_TestCase
     protected function getClassParser()
     {
         $phpDocParser = new PhpDocParser();
-        $fileLoader   = new PhpFileLoader();
+        $fileLoader   = new FileLoader();
 
         return new ClassParser($phpDocParser, $fileLoader);
     }

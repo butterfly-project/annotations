@@ -1,6 +1,6 @@
 <?php
 
-namespace Butterfly\Component\Annotations\Tests;
+namespace Butterfly\Component\Annotations\Tests\Parser;
 
 use Butterfly\Component\Annotations\Parser\PhpDocParser;
 

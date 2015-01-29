@@ -2,12 +2,12 @@
 
 namespace Butterfly\Component\Annotations\FileLoader;
 
-class PhpFileLoader implements IFileLoader
+class FileLoader implements IFileLoader
 {
     /**
      * @param string $dirPath
      */
-    public function loadDirectory($dirPath)
+    public function loadFilesFromDir($dirPath)
     {
         $filePaths = $this->getFilesFromDir(realpath($dirPath));
 
@@ -44,9 +44,8 @@ class PhpFileLoader implements IFileLoader
     /**
      * @param string $filePath
      */
-    public function loadFile($filePath)
+    protected function loadFile($filePath)
     {
         require_once $filePath;
     }
-
 }

@@ -28,60 +28,50 @@ class ClassParser
     }
 
     /**
-     * @param array $dirs
+     * @param string $path
      * @return array
      */
-    public function parseDirectories(array $dirs)
+    public function parseClassesInDir($path)
     {
-        $classes = $this->loadClassesFromDir($dirs);
+        $classes = $this->findClassesInDir($path);
 
         return $this->parseClasses($classes);
     }
 
     /**
-     * @param array $dirs
+     * @param string $path
      * @return array
      */
-    protected function loadClassesFromDir(array $dirs)
+    protected function findClassesInDir($path)
     {
         $classesBefore = get_declared_classes();
-        $this->loadDirectories($dirs);
+        $this->fileLoader->loadFilesFromDir($path);
         $classesAfter = get_declared_classes();
 
         return array_diff($classesAfter, $classesBefore);
     }
 
     /**
-     * @param array $dirs
-     */
-    protected function loadDirectories(array $dirs)
-    {
-        foreach ($dirs as $dir) {
-            $this->fileLoader->loadDirectory($dir);
-        }
-    }
-
-    /**
-     * @param array $classesnames
+     * @param array $classesNames
      * @return array
      */
-    protected function parseClasses(array $classesnames)
+    protected function parseClasses(array $classesNames)
     {
         $annotations = array();
-        foreach ($classesnames as $classname) {
-            $annotations[$classname] = $this->parse($classname);
+        foreach ($classesNames as $className) {
+            $annotations[$className] = $this->parseClass($className);
         }
 
         return $annotations;
     }
 
     /**
-     * @param string $classname
+     * @param string $className
      * @return array
      */
-    public function parse($classname)
+    public function parseClass($className)
     {
-        $reflectionClass = new \ReflectionClass($classname);
+        $reflectionClass = new \ReflectionClass($className);
 
         $annotations = array();
         $annotations['class'] = $this->phpDocParser->parse($reflectionClass->getDocComment());
