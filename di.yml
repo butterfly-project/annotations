@@ -7,7 +7,7 @@ services:
       - @bfy.annotations.file_loader
 
   bfy.annotations.file_loader:
-    class: 'Butterfly\Component\Annotations\FileLoader\PhpFileLoader'
+    class: 'Butterfly\Component\Annotations\FileLoader\FileLoader'
 
   bfy.annotations.php_doc_parser:
     class: 'Butterfly\Component\Annotations\Parser\PhpDocParser'
