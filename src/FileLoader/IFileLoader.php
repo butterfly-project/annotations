@@ -7,5 +7,5 @@ interface IFileLoader
     /**
      * @param string $dir
      */
-    public function loadDirectory($dir);
+    public function loadFilesFromDir($dir);
 }
