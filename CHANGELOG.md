@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+1.0.3
+-----
+
+Added functionality:
+
+ * Handle classes with missing method or properties
+
 1.0.2
 -----
 
