@@ -16,7 +16,7 @@
     "autoload": {
         "psr-4": {
             "Butterfly\\Component\\Annotations\\": "src/",
-            "Butterfly\\Component\\Annotations\\Tests\\": "tests/"
+            "Butterfly\\Component\\Annotations\\Tests\\": "tests/unit/"
         }
     }
 }

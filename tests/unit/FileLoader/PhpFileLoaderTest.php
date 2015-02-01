@@ -13,14 +13,16 @@ class PhpFileLoaderTest extends \PHPUnit_Framework_TestCase
 
         $fileLoader = new FileLoader();
 
-        $this->assertFalse(class_exists("$baseNamespaces\\ClassFoo"));
-        $this->assertFalse(class_exists("$baseNamespaces\\InnerTestDir\\ClassBar"));
-        $this->assertFalse(class_exists("$baseNamespaces\\InnerTestDir\\ClassBaz"));
+        $classes = get_declared_classes();
+        $this->assertFalse(in_array("$baseNamespaces\\ClassFoo", $classes));
+        $this->assertFalse(in_array("$baseNamespaces\\InnerTestDir\\ClassBar", $classes));
+        $this->assertFalse(in_array("$baseNamespaces\\InnerTestDir\\ClassBaz", $classes));
 
         $fileLoader->loadFilesFromDir($dirPath);
 
-        $this->assertTrue(class_exists("$baseNamespaces\\ClassFoo"));
-        $this->assertTrue(class_exists("$baseNamespaces\\InnerTestDir\\ClassBar"));
-        $this->assertTrue(class_exists("$baseNamespaces\\InnerTestDir\\ClassBaz"));
+        $classes = get_declared_classes();
+        $this->assertTrue(in_array("$baseNamespaces\\ClassFoo", $classes));
+        $this->assertTrue(in_array("$baseNamespaces\\InnerTestDir\\ClassBar", $classes));
+        $this->assertTrue(in_array("$baseNamespaces\\InnerTestDir\\ClassBaz", $classes));
     }
 }

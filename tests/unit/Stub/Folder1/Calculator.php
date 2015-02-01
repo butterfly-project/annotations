@@ -1,6 +1,6 @@
 <?php
 
-namespace Butterfly\Component\Annotations\Tests\Stub;
+namespace Butterfly\Component\Annotations\Tests\Stub\Folder1;
 
 /**
  * @class-annotation1 value1

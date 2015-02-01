@@ -76,10 +76,12 @@ class ClassParser
         $annotations = array();
         $annotations['class'] = $this->phpDocParser->parse($reflectionClass->getDocComment());
 
+        $annotations['properties'] = array();
         foreach ($reflectionClass->getProperties() as $property) {
             $annotations['properties'][$property->getName()] = $this->phpDocParser->parse($property->getDocComment());
         }
 
+        $annotations['methods'] = array();
         foreach ($reflectionClass->getMethods() as $method) {
             $annotations['methods'][$method->getName()] = $this->phpDocParser->parse($method->getDocComment());
         }
