@@ -33,10 +33,10 @@ class ClassParserTest extends \PHPUnit_Framework_TestCase
     {
         $parser = $this->getClassParser();
 
-        $result = $parser->parseClassesInDir(__DIR__ . '/Stub');
+        $result = $parser->parseClassesInDir(__DIR__ . '/Stub/Folder1');
 
         $expected = array(
-            'Butterfly\Component\Annotations\Tests\Stub\Calculator' => $this->expectedClassAnnotations
+            'Butterfly\Component\Annotations\Tests\Stub\Folder1\Calculator' => $this->expectedClassAnnotations
         );
 
         $this->assertEquals($expected, $result);
@@ -46,11 +46,24 @@ class ClassParserTest extends \PHPUnit_Framework_TestCase
     {
         $parser = $this->getClassParser();
 
-        require_once __DIR__ . '/Stub/Calculator.php';
-
-        $annotations = $parser->parseClass('Butterfly\Component\Annotations\Tests\Stub\Calculator');
+        $annotations = $parser->parseClass('Butterfly\Component\Annotations\Tests\Stub\Folder1\Calculator');
 
         $this->assertEquals($this->expectedClassAnnotations, $annotations);
+    }
+
+    public function testParseWithEmptyPropertiesOrMethods()
+    {
+        $parser = $this->getClassParser();
+
+        $annotations = $parser->parseClass('Butterfly\Component\Annotations\Tests\Stub\Folder2\EmptyCalculator');
+
+        $expected = array(
+            'class'      => array(),
+            'properties' => array(),
+            'methods'    => array(),
+        );
+
+        $this->assertEquals($expected, $annotations);
     }
 
     /**
