@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+1.0.6
+-----
+
+Added functionality:
+
+ * Added annotation handler
+
 1.0.5
 -----
 
