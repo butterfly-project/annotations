@@ -2,6 +2,9 @@
 
 namespace Butterfly\Component\Annotations\FileLoader;
 
+/**
+ * @author Marat Fakhertdinov <marat.fakhertdinov@gmail.com>
+ */
 class FileLoader implements IFileLoader
 {
     /**

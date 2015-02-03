@@ -2,6 +2,9 @@
 
 namespace Butterfly\Tests;
 
+/**
+ * @author Marat Fakhertdinov <marat.fakhertdinov@gmail.com>
+ */
 class ServicesTest extends BaseDiTest
 {
     public function getDataForTestService()

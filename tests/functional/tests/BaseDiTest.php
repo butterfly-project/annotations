@@ -5,6 +5,9 @@ namespace Butterfly\Tests;
 use Butterfly\Component\DI\Container;
 use Butterfly\Component\Packages\ExtendedDiConfig;
 
+/**
+ * @author Marat Fakhertdinov <marat.fakhertdinov@gmail.com>
+ */
 abstract class BaseDiTest extends \PHPUnit_Framework_TestCase
 {
     protected static $baseDir;
