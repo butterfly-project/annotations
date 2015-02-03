@@ -4,6 +4,9 @@ namespace Butterfly\Component\Annotations\Tests\FileLoader;
 
 use Butterfly\Component\Annotations\FileLoader\FileLoader;
 
+/**
+ * @author Marat Fakhertdinov <marat.fakhertdinov@gmail.com>
+ */
 class PhpFileLoaderTest extends \PHPUnit_Framework_TestCase
 {
     public function testLoadFilesFromDir()

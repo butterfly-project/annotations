@@ -4,6 +4,9 @@ namespace Butterfly\Component\Annotations\Tests\Parser;
 
 use Butterfly\Component\Annotations\Parser\PhpDocParser;
 
+/**
+ * @author Marat Fakhertdinov <marat.fakhertdinov@gmail.com>
+ */
 class PhpDocParserTest extends \PHPUnit_Framework_TestCase
 {
     public function getDataForTestParse()

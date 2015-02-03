@@ -2,6 +2,9 @@
 
 namespace Butterfly\Component\Annotations\Parser;
 
+/**
+ * @author Marat Fakhertdinov <marat.fakhertdinov@gmail.com>
+ */
 interface IPhpDocParser
 {
     /**

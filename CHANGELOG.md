@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+1.0.5
+-----
+
+Added functionality:
+
+ * Added annotation visitor interface
+
 1.0.4
 -----
 

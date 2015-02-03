@@ -6,6 +6,9 @@ use Butterfly\Component\Annotations\ClassParser;
 use Butterfly\Component\Annotations\FileLoader\FileLoader;
 use Butterfly\Component\Annotations\Parser\PhpDocParser;
 
+/**
+ * @author Marat Fakhertdinov <marat.fakhertdinov@gmail.com>
+ */
 class ClassParserTest extends \PHPUnit_Framework_TestCase
 {
     protected $expectedClassAnnotations = array(

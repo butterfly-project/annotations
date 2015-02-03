@@ -7,6 +7,9 @@ use Butterfly\Component\Annotations\FileLoader\IFileLoader;
 use Butterfly\Component\Annotations\Parser\IPhpDocParser;
 use Butterfly\Component\Annotations\Parser\PhpDocParser;
 
+/**
+ * @author Marat Fakhertdinov <marat.fakhertdinov@gmail.com>
+ */
 class ClassParser
 {
     /**
