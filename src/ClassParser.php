@@ -2,8 +2,10 @@
 
 namespace Butterfly\Component\Annotations;
 
+use Butterfly\Component\Annotations\FileLoader\FileLoader;
 use Butterfly\Component\Annotations\FileLoader\IFileLoader;
 use Butterfly\Component\Annotations\Parser\IPhpDocParser;
+use Butterfly\Component\Annotations\Parser\PhpDocParser;
 
 class ClassParser
 {
@@ -16,6 +18,14 @@ class ClassParser
      * @var IFileLoader
      */
     protected $fileLoader;
+
+    /**
+     * @return static
+     */
+    public static function createInstance()
+    {
+        return new static(new PhpDocParser(), new FileLoader());
+    }
 
     /**
      * @param IPhpDocParser $phpDocParser
