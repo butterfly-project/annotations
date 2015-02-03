@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+1.0.4
+-----
+
+Added functionality:
+
+ * Added facade factory method for ClassParser
+
 1.0.3
 -----
 

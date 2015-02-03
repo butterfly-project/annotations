@@ -76,4 +76,11 @@ class ClassParserTest extends \PHPUnit_Framework_TestCase
 
         return new ClassParser($phpDocParser, $fileLoader);
     }
+    
+    public function testCreateInstance()
+    {
+        $parser = ClassParser::createInstance();
+
+        $this->assertInstanceOf('\Butterfly\Component\Annotations\ClassParser', $parser);
+    }
 }
