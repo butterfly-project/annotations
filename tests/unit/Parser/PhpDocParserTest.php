@@ -53,12 +53,16 @@ class PhpDocParserTest extends \PHPUnit_Framework_TestCase
                  * @annotation1 123
                  * @annotation2       123
                  *      @annotation3  123
+                 * @annotation4 abc
+                 * @annotation5       abc
                  */
                 ',
                 array(
                     'annotation1' => 123,
                     'annotation2' => 123,
                     'annotation3' => 123,
+                    'annotation4' => 'abc',
+                    'annotation5' => 'abc',
                 )
             ),
 
