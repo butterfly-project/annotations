@@ -15,8 +15,9 @@ class PhpDocParser implements IPhpDocParser
     {
         $phpDocBody  = $this->extractPhpDocBody($phpDoc);
         $phpDocLines = $this->extractPhpDocLines($phpDocBody);
+        $annotations = $this->extractAnnotations($phpDocLines);
 
-        return $this->extractAnnotations($phpDocLines);
+        return $annotations;
     }
 
     /**
@@ -110,15 +111,11 @@ class PhpDocParser implements IPhpDocParser
 
     /**
      * @param string $phpDocLine
-     * @return null|string
+     * @return string
      */
     protected function extractAnnotationBody($phpDocLine)
     {
-        $atPosition = strpos($phpDocLine, '@');
-
-        return false !== $atPosition
-            ? trim(substr($phpDocLine, $atPosition + 1))
-            : '';
+        return trim(substr($phpDocLine, 1));
     }
 
     /**
@@ -127,9 +124,14 @@ class PhpDocParser implements IPhpDocParser
      */
     protected function separateAnnotationKeyAndValue($str)
     {
-        return substr_count($str, ' ') > 0
-            ? explode(' ', $str, 2)
-            : array($str, null);
+        if (0 == substr_count($str, ' ')) {
+            return array($str, null);
+        }
+
+        $elements    = explode(' ', $str, 2);
+        $elements[1] = trim($elements[1]);
+
+        return $elements;
     }
 
     /**

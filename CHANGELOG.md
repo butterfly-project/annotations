@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+1.0.7
+-----
+
+Changes:
+
+ * Fix bug for annotation value idents
+
 1.0.6
 -----
 
