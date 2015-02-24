@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+1.0.8
+-----
+
+Changes:
+
+ * Added filtering by file extensions in FileLoader
+
 1.0.7
 -----
 
