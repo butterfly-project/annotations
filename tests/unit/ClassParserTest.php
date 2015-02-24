@@ -75,7 +75,7 @@ class ClassParserTest extends \PHPUnit_Framework_TestCase
     protected function getClassParser()
     {
         $phpDocParser = new PhpDocParser();
-        $fileLoader   = new FileLoader();
+        $fileLoader   = new FileLoader(array('php'));
 
         return new ClassParser($phpDocParser, $fileLoader);
     }
