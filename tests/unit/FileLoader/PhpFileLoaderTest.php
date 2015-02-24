@@ -14,7 +14,8 @@ class PhpFileLoaderTest extends \PHPUnit_Framework_TestCase
         $dirPath        = __DIR__ . '/TestDir';
         $baseNamespaces = 'Butterfly\Component\Annotations\Tests\FileLoader\TestDir';
 
-        $fileLoader = new FileLoader();
+        $fileExtensions = array('php');
+        $fileLoader     = new FileLoader($fileExtensions);
 
         $classes = get_declared_classes();
         $this->assertFalse(in_array("$baseNamespaces\\ClassFoo", $classes));

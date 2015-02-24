@@ -23,11 +23,12 @@ class ClassParser
     protected $fileLoader;
 
     /**
+     * @param array $fileExtensions
      * @return static
      */
-    public static function createInstance()
+    public static function createInstance(array $fileExtensions = array('php'))
     {
-        return new static(new PhpDocParser(), new FileLoader());
+        return new static(new PhpDocParser(), new FileLoader($fileExtensions));
     }
 
     /**

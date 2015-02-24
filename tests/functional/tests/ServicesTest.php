@@ -7,6 +7,23 @@ namespace Butterfly\Tests;
  */
 class ServicesTest extends BaseDiTest
 {
+    public function getDataForTestParameter()
+    {
+        return array(
+            array('bfy.annotations.file_extensions', array('php')),
+        );
+    }
+
+    /**
+     * @dataProvider getDataForTestParameter
+     * @param string $parameterName
+     * @param mixed $expectedValue
+     */
+    public function testParameter($parameterName, $expectedValue)
+    {
+        $this->assertEquals($expectedValue, self::$container->getParameter($parameterName));
+    }
+
     public function getDataForTestService()
     {
         return array(
