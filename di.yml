@@ -5,12 +5,12 @@ services:
   bfy.annotations.class_parser:
     class: 'Butterfly\Component\Annotations\ClassParser'
     arguments:
-      - @bfy.annotations.php_doc_parser
-      - @bfy.annotations.file_loader
+      - '@bfy.annotations.php_doc_parser'
+      - '@bfy.annotations.file_loader'
 
   bfy.annotations.file_loader:
     class: 'Butterfly\Component\Annotations\FileLoader\FileLoader'
-    arguments: [%bfy.annotations.file_extensions%]
+    arguments: ['%bfy.annotations.file_extensions%']
 
   bfy.annotations.php_doc_parser:
     class: 'Butterfly\Component\Annotations\Parser\PhpDocParser'
