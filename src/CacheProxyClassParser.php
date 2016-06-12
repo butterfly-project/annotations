@@ -2,8 +2,6 @@
 
 namespace Butterfly\Component\Annotations;
 
-use Butterfly\Component\Annotations\Parser\IPhpDocParser;
-
 /**
  * @author Marat Fakhertdinov <marat.fakhertdinov@gmail.com>
  */
@@ -38,11 +36,19 @@ class CacheProxyClassParser implements IClassParser
         $reflectionClass = new \ReflectionClass($className);
         $lastUpdatedAt   = filemtime($reflectionClass->getFileName());
 
-        if (empty($this->cache[$className]) || empty($this->cache[$className][$lastUpdatedAt])) {
-            $this->cache[$className] = [];
+        if (!array_key_exists($className, $this->cache) || !array_key_exists($lastUpdatedAt, $this->cache[$className])) {
+            $this->cache[$className] = array();
             $this->cache[$className][$lastUpdatedAt] = $this->classParser->parseClass($className);
         }
 
         return $this->cache[$className][$lastUpdatedAt];
+    }
+
+    /**
+     * @return array
+     */
+    public function getCache()
+    {
+        return $this->cache;
     }
 }
