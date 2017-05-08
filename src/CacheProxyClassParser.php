@@ -18,6 +18,11 @@ class CacheProxyClassParser implements IClassParser
     protected $cache;
 
     /**
+     * @var bool
+     */
+    protected $hasChanges = false;
+
+    /**
      * @param IClassParser $classParser
      * @param array $cache
      */
@@ -36,12 +41,17 @@ class CacheProxyClassParser implements IClassParser
         $reflectionClass = new \ReflectionClass($className);
         $lastUpdatedAt   = filemtime($reflectionClass->getFileName());
 
-        if (!array_key_exists($className, $this->cache) || !array_key_exists($lastUpdatedAt, $this->cache[$className])) {
-            $this->cache[$className] = array();
-            $this->cache[$className][$lastUpdatedAt] = $this->classParser->parseClass($className);
+        if (!array_key_exists($className, $this->cache) ||
+            !array_key_exists('mtime', $this->cache[$className]) ||
+            $lastUpdatedAt != $this->cache[$className]['mtime']) {
+            $this->hasChanges = true;
+            $this->cache[$className] = array(
+                'mtime' => $lastUpdatedAt,
+                'data'  => $this->classParser->parseClass($className),
+            );
         }
 
-        return $this->cache[$className][$lastUpdatedAt];
+        return $this->cache[$className]['data'];
     }
 
     /**
@@ -50,5 +60,13 @@ class CacheProxyClassParser implements IClassParser
     public function getCache()
     {
         return $this->cache;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasChanges()
+    {
+        return $this->hasChanges;
     }
 }
