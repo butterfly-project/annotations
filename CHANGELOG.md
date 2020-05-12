@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+2.0.x-dev
+---------
+
+* Change mechanism of load classes
+* Added cached class anotation parser
+
 1.0.8
 -----
 

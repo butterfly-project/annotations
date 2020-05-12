@@ -2,15 +2,12 @@
 
 namespace Butterfly\Component\Annotations;
 
-use Butterfly\Component\Annotations\FileLoader\FileLoader;
-use Butterfly\Component\Annotations\FileLoader\IFileLoader;
 use Butterfly\Component\Annotations\Parser\IPhpDocParser;
-use Butterfly\Component\Annotations\Parser\PhpDocParser;
 
 /**
  * @author Marat Fakhertdinov <marat.fakhertdinov@gmail.com>
  */
-class ClassParser
+class ClassParser implements IClassParser
 {
     /**
      * @var IPhpDocParser
@@ -18,65 +15,11 @@ class ClassParser
     protected $phpDocParser;
 
     /**
-     * @var IFileLoader
-     */
-    protected $fileLoader;
-
-    /**
-     * @param array $fileExtensions
-     * @return static
-     */
-    public static function createInstance(array $fileExtensions = array('php'))
-    {
-        return new static(new PhpDocParser(), new FileLoader($fileExtensions));
-    }
-
-    /**
      * @param IPhpDocParser $phpDocParser
-     * @param IFileLoader $fileLoader
      */
-    public function __construct(IPhpDocParser $phpDocParser, IFileLoader $fileLoader)
+    public function __construct(IPhpDocParser $phpDocParser)
     {
         $this->phpDocParser = $phpDocParser;
-        $this->fileLoader   = $fileLoader;
-    }
-
-    /**
-     * @param string $path
-     * @return array
-     */
-    public function parseClassesInDir($path)
-    {
-        $classes = $this->findClassesInDir($path);
-
-        return $this->parseClasses($classes);
-    }
-
-    /**
-     * @param string $path
-     * @return array
-     */
-    protected function findClassesInDir($path)
-    {
-        $classesBefore = get_declared_classes();
-        $this->fileLoader->loadFilesFromDir($path);
-        $classesAfter = get_declared_classes();
-
-        return array_diff($classesAfter, $classesBefore);
-    }
-
-    /**
-     * @param array $classesNames
-     * @return array
-     */
-    protected function parseClasses(array $classesNames)
-    {
-        $annotations = array();
-        foreach ($classesNames as $className) {
-            $annotations[$className] = $this->parseClass($className);
-        }
-
-        return $annotations;
     }
 
     /**

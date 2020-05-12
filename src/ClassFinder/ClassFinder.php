@@ -1,11 +1,8 @@
 <?php
 
-namespace Butterfly\Component\Annotations\FileLoader;
+namespace Butterfly\Component\Annotations\ClassFinder;
 
-/**
- * @author Marat Fakhertdinov <marat.fakhertdinov@gmail.com>
- */
-class FileLoader implements IFileLoader
+class ClassFinder
 {
     /**
      * @var array
@@ -21,15 +18,30 @@ class FileLoader implements IFileLoader
     }
 
     /**
-     * @param string $dirPath
+     * @param string $path
+     * @return array
      */
-    public function loadFilesFromDir($dirPath)
+    public function findClassesInDir($path)
     {
-        $filePaths = $this->getFilesFromDir(realpath($dirPath));
+        $files = $this->getFilesFromDir($path);
 
-        foreach ($filePaths as $filePath) {
-            $this->loadFile($filePath);
+        foreach ($files as $file) {
+            require_once $file;
         }
+
+        $loadedClasses = get_declared_classes();
+
+        $classes = array();
+
+        foreach ($loadedClasses as $loadedClass) {
+            $reflectionClass = new \ReflectionClass($loadedClass);
+
+            if (in_array($reflectionClass->getFileName(), $files)) {
+                $classes[] = $loadedClass;
+            }
+        }
+
+        return $classes;
     }
 
     /**
@@ -55,13 +67,5 @@ class FileLoader implements IFileLoader
         }
 
         return $files;
-    }
-
-    /**
-     * @param string $filePath
-     */
-    protected function loadFile($filePath)
-    {
-        require_once $filePath;
     }
 }
